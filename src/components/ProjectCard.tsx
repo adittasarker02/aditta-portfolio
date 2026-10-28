@@ -1,0 +1,5 @@
+import Link from 'next/link';
+type Project = { slug: string; number: string; title: string; category: string; description: string; image: string; stack: string[]; live: string; code: string };
+export default function ProjectCard({ project }: { project: Project }) {
+  return <article className="project-card"><Link href={`/projects/${project.slug}`} className="project-image"><img src={project.image} alt={`${project.title} project preview`} /><span className="project-number">{project.number}</span></Link><div className="project-body"><p className="eyebrow">{project.category}</p><h3><Link href={`/projects/${project.slug}`}>{project.title}</Link></h3><p className="project-description">{project.description}</p><div className="tags">{project.stack.map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-links">{project.live ? <a href={project.live} target="_blank" rel="noreferrer">Live preview ↗</a> : <span className="muted-link">Live preview coming soon</span>}<a href={project.code} target="_blank" rel="noreferrer">Source code ↗</a></div></div></article>;
+}
